@@ -46,12 +46,16 @@ AKartPawn::AKartPawn()
 
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	CameraComp->SetupAttachment(SpringArm);
+
+
 }
 
 // Called when the game starts or when spawned
 void AKartPawn::BeginPlay()
 {
 	Super::BeginPlay();
+
+
 
 }
 
@@ -77,6 +81,7 @@ void AKartPawn::Tick(float DeltaTime)
 
 	Speed = GetVelocity().Length() / 100;
 
+	DrawDebugSphere(GetWorld(), RootComp->GetCenterOfMass(), 5, 12, FColor::Red, false);
 }
 
 

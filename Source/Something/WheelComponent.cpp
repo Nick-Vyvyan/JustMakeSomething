@@ -45,7 +45,7 @@ bool UWheelComponent::SuspensionRayCast(FHitResult& OutHit)
 		ECollisionChannel::ECC_Visibility,
 		Params
 	);
-	DrawDebugLine(GetWorld(), GetComponentLocation(), GetComponentLocation() + FVector(0, 0, SuspensionRange), FColor::Red);
+	DrawDebugLine(GetWorld(), GetComponentLocation(), EndLocation, FColor::Red);
 	bIsGrounded = OutHit.bBlockingHit;
 	return bIsGrounded;
 
