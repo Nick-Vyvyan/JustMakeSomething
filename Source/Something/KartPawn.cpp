@@ -22,6 +22,11 @@ AKartPawn::AKartPawn()
 	RootComp->SetLinearDamping(3);
 	RootComp->SetAngularDamping(5);
 
+	SkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMesh"));
+	SkeletalMesh->SetupAttachment(RootComp);
+	SkeletalMesh->SetSimulatePhysics(false);
+	SkeletalMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
 	UWheelComponent* FL_Wheel = CreateDefaultSubobject<UWheelComponent>(TEXT("Front Left Wheel"));
 	FL_Wheel->SetupAttachment(RootComp);
 	WheelComponents.Add(FL_Wheel);
@@ -87,11 +92,13 @@ void AKartPawn::Tick(float DeltaTime)
 
 void AKartPawn::ApplySteeringTorque(float InputValue)
 {
+	SteeringInput = InputValue;
 	FVector TorqueVector = FVector(0, 0, InputValue * SteeringStrength * AccelerationInput);
 	if (bUseHandbrake)
 	{
 		TorqueVector = FVector(0, 0, InputValue * SteeringStrength * AccelerationInput * HandbrakeTurnMultiplier);
 	}
+
 
 
 	RootComp->AddTorqueInRadians(TorqueVector);

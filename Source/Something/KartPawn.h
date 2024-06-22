@@ -32,8 +32,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void ApplySteeringTorque(float InputValue);
 
-	UPROPERTY(EditAnywhere, Category = "Kart")
+	UPROPERTY(VisibleAnywhere, Category = "Kart")
 	TArray<class UWheelComponent*> WheelComponents;
+
+	UPROPERTY(VisibleAnywhere, Category = "Kart")
+	class USkeletalMeshComponent* SkeletalMesh;
 
 	UPROPERTY(VisibleAnywhere, Category = "Kart")
 	class UBoxComponent* RootComp;
@@ -46,6 +49,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Kart")
 	float SteeringStrength = 1000000;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Kart")
+	float SteeringInput;
 
 	UPROPERTY(EditAnywhere, Category = "Kart")
 	float SuspensionForce = 500000;
