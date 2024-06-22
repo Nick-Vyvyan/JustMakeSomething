@@ -50,11 +50,17 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Kart")
 	float SuspensionForce = 500000;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Kart")
+	float MaxSpeed = 1750;
+
 	UPROPERTY(EditAnywhere, Category = "Kart")
-	float AccelerationRate = 1750;
+	float AdditionalDownForce = 50000;
 
 	UPROPERTY(BlueprintReadWrite)
 	bool bHasAccelerationInput = false;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int Speed;
 
 	UFUNCTION(BlueprintCallable)
 	void SetAccelerationInput(float InputValue);
@@ -68,8 +74,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void CameraLookY(float InputValueY);
 
+	UFUNCTION(BlueprintCallable)
+	void ResetPosition();
+
 
 private:
 	float AccelerationInput;
-
+	bool bAllWheelsGrounded;
 };

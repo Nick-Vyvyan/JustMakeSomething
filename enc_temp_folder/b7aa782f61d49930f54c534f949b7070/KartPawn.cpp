@@ -152,7 +152,7 @@ void AKartPawn::CameraLookY(float InputValueY)
 
 void AKartPawn::ResetPosition()
 {
-	if (bAllWheelsGrounded || FMath::Floor(Speed) != 0)
+	if (!bAllWheelsGrounded || FMath::Floor(Speed) != 0)
 	{
 		return;
 	}
