@@ -128,14 +128,12 @@ void AKartPawn::ApplyAccelerationForce(UWheelComponent* Wheel)
 
 void AKartPawn::CameraLookX(float InputValueX)
 {
-	FRotator XRotation = FRotator(0, InputValueX, 0);
-	SpringArm->AddRelativeRotation(XRotation);
+	AddControllerYawInput(InputValueX);
 }
 
 void AKartPawn::CameraLookY(float InputValueY)
 {
-	FRotator YRotation = FRotator(InputValueY, 0, 0);
-	SpringArm->AddRelativeRotation(YRotation);
+
 }
 
 // Called to bind functionality to input

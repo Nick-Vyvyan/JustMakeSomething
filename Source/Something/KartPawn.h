@@ -38,6 +38,12 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Kart")
 	class UBoxComponent* RootComp;
 
+	UPROPERTY(VisibleAnywhere, Category = "Camera")
+	class USpringArmComponent* SpringArm;
+
+	UPROPERTY(VisibleAnywhere, Category = "Camera")
+	class UCameraComponent* CameraComp;
+
 	UPROPERTY(EditAnywhere, Category = "Kart")
 	float SteeringStrength = 1000000;
 
@@ -56,7 +62,14 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void ApplyAccelerationForce(UWheelComponent* Wheel);
 
+	UFUNCTION(BlueprintCallable)
+	void CameraLookX(float InputValueX);
+
+	UFUNCTION(BlueprintCallable)
+	void CameraLookY(float InputValueY);
+
+
 private:
 	float AccelerationInput;
-	
+
 };
