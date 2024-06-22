@@ -59,14 +59,23 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	bool bHasAccelerationInput = false;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Kart")
 	int Speed;
+
+	UPROPERTY(EditAnywhere, Category = "Kart")
+	float HandbrakeTurnMultiplier = 500;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bUseHandbrake = false;
 
 	UFUNCTION(BlueprintCallable)
 	void SetAccelerationInput(float InputValue);
 
 	UFUNCTION(BlueprintCallable)
 	void ApplyAccelerationForce(UWheelComponent* Wheel);
+
+	UFUNCTION(BlueprintCallable)
+	void ApplyHandbrake();
 
 	UFUNCTION(BlueprintCallable)
 	void CameraLookX(float InputValueX);

@@ -73,6 +73,7 @@ void ASpeedBoost::ApplySpeedBoost()
 void ASpeedBoost::SpeedBoostOver()
 {
 	HitKart->MaxSpeed -= SpeedBoostAmount;
-	Destroy();
+	SetActorHiddenInGame(false);
+	SetActorEnableCollision(true);
 }
 

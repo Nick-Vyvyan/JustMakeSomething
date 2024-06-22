@@ -83,6 +83,12 @@ void AKartPawn::Tick(float DeltaTime)
 void AKartPawn::ApplySteeringTorque(float InputValue)
 {
 	FVector TorqueVector = FVector(0, 0, InputValue * SteeringStrength * AccelerationInput);
+	if (bUseHandbrake)
+	{
+		TorqueVector = FVector(0, 0, InputValue * SteeringStrength * AccelerationInput * HandbrakeTurnMultiplier);
+	}
+
+
 	RootComp->AddTorqueInRadians(TorqueVector);
 }
 
@@ -138,6 +144,12 @@ void AKartPawn::ApplyAccelerationForce(UWheelComponent* Wheel)
 	);
 }
 
+void AKartPawn::ApplyHandbrake()
+{
+	AccelerationInput = FMath::FInterpTo(AccelerationInput, 0, UGameplayStatics::GetWorldDeltaSeconds(this), 0.05);
+	bUseHandbrake = true;
+}
+
 void AKartPawn::CameraLookX(float InputValueX)
 {
 	FRotator XRotation = FRotator(0, InputValueX, 0);
@@ -152,7 +164,7 @@ void AKartPawn::CameraLookY(float InputValueY)
 
 void AKartPawn::ResetPosition()
 {
-	if (bAllWheelsGrounded || FMath::Floor(Speed) != 0)
+	if (bAllWheelsGrounded || Speed != 0)
 	{
 		return;
 	}
