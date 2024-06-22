@@ -27,7 +27,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	bool SuspensionRayCast(FHitResult& OutHit);
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Wheel")
 	float SuspensionRange = -60;
 
 	bool bIsGrounded;

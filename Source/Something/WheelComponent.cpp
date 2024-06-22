@@ -11,7 +11,6 @@ UWheelComponent::UWheelComponent()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-	// ...
 }
 
 
@@ -48,7 +47,7 @@ bool UWheelComponent::SuspensionRayCast(FHitResult& OutHit)
 	);
 	DrawDebugLine(GetWorld(), GetComponentLocation(), GetComponentLocation() + FVector(0, 0, SuspensionRange), FColor::Red);
 	bIsGrounded = OutHit.bBlockingHit;
-	return OutHit.bBlockingHit;
+	return bIsGrounded;
 
 }
 
