@@ -86,8 +86,9 @@ void AKartPawn::ApplyWheelForces(UWheelComponent* Wheel)
 
 		//UE_LOG(LogTemp, Warning, TEXT("%s Applied Force: %s"), *Wheel->GetName(), *ForceVector.ToString());
 
-		ApplyAccelerationForce(Wheel);
 	}
+
+	ApplyAccelerationForce(Wheel);
 }
 
 
@@ -100,7 +101,7 @@ void AKartPawn::SetAccelerationInput(float InputValue)
 void AKartPawn::ApplyAccelerationForce(UWheelComponent* Wheel)
 {
 	// Set Default Acceleration Input - This will fight (but lose) against player input
-	if (!bHasAccelerationInput)
+	if (!bHasAccelerationInput || !Wheel->bIsGrounded)
 	{
 		AccelerationInput = FMath::FInterpTo(AccelerationInput, 0, UGameplayStatics::GetWorldDeltaSeconds(this), 0.05);
 	}

@@ -47,7 +47,7 @@ bool UWheelComponent::SuspensionRayCast(FHitResult& OutHit)
 		Params
 	);
 	DrawDebugLine(GetWorld(), GetComponentLocation(), GetComponentLocation() + FVector(0, 0, SuspensionRange), FColor::Red);
-
+	bIsGrounded = OutHit.bBlockingHit;
 	return OutHit.bBlockingHit;
 
 }

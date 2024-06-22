@@ -58,4 +58,5 @@ public:
 
 private:
 	float AccelerationInput;
+	
 };

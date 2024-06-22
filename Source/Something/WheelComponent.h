@@ -30,4 +30,5 @@ public:
 	UPROPERTY(EditAnywhere)
 	float SuspensionRange = -60;
 
+	bool bIsGrounded;
 };
