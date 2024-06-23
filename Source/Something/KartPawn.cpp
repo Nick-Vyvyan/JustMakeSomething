@@ -93,6 +93,7 @@ void AKartPawn::Tick(float DeltaTime)
 void AKartPawn::ApplySteeringTorque(float InputValue)
 {
 	SteeringInput = InputValue;
+	bHasSteeringInput = true;
 	FVector TorqueVector = FVector(0, 0, InputValue * SteeringStrength * AccelerationInput);
 	if (bUseHandbrake)
 	{

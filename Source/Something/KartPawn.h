@@ -65,6 +65,9 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	bool bHasAccelerationInput = false;
 
+	UPROPERTY(BlueprintReadWrite)
+	bool bHasSteeringInput = false;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Kart")
 	int Speed;
 
