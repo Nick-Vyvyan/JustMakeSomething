@@ -21,7 +21,10 @@ APlayerPawn::APlayerPawn()
 	SetRootComponent(Mesh);
 	Mesh->SetRelativeTransform(FTransform::Identity);
 	Mesh->SetSimulatePhysics(true);
-	Mesh->SetMassOverrideInKg(NAME_None, 100);
+	Mesh->SetMassOverrideInKg(NAME_None, 250);
+	Mesh->SetLinearDamping(0.25);
+	Mesh->SetAngularDamping(0.025);
+
 
 	ForwardArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("Forward Arrow"));
 	ForwardArrow->SetupAttachment(Mesh);
@@ -54,7 +57,7 @@ void APlayerPawn::PushLeftRight(const FInputActionValue& Value)
 {
 
 	FVector Force = ForwardArrow->GetRightVector() * Value.Get<float>() * ForceMultiplier;
-	
+
 	Mesh->AddForce(Force, NAME_None, true);
 }
 
@@ -73,6 +76,8 @@ void APlayerPawn::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	//UE_LOG(LogTemp, Warning, TEXT("Actor Location : %s"), *GetActorLocation().ToString());
+	FVector ConstantForce = ForwardArrow->GetForwardVector() * ConstantAcceleration * DeltaTime;
+	Mesh->AddForce(ConstantForce, NAME_None, true);
 }
 
 

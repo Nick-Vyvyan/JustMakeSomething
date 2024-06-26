@@ -33,7 +33,7 @@ protected:
 	virtual void BeginPlay() override;
 
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
 	class UInputAction* LeftRightAction;
 
 	void PushLeftRight(const FInputActionValue& Value);
@@ -52,7 +52,10 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	class UArrowComponent* ForwardArrow;
 
-	UPROPERTY(EditAnywhere, Category = "Input")
+	UPROPERTY(EditAnywhere, Category = "Movement")
 	float ForceMultiplier = 250;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
+	float ConstantAcceleration = 25000;
 
 };
