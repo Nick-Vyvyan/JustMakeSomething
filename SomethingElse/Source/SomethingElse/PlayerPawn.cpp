@@ -8,6 +8,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/SphereComponent.h"
+#include "Components/ArrowComponent.h"
 
 
 // Sets default values
@@ -21,6 +22,10 @@ APlayerPawn::APlayerPawn()
 	Mesh->SetRelativeTransform(FTransform::Identity);
 	Mesh->SetSimulatePhysics(true);
 	Mesh->SetMassOverrideInKg(NAME_None, 100);
+
+	ForwardArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("Forward Arrow"));
+	ForwardArrow->SetupAttachment(Mesh);
+	ForwardArrow->SetUsingAbsoluteRotation(true);
 
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("Spring Arm"));
 	SpringArm->SetupAttachment(Mesh);
@@ -48,7 +53,8 @@ void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 void APlayerPawn::PushLeftRight(const FInputActionValue& Value)
 {
 
-	FVector Force = GetActorRightVector() * Value.Get<float>() * ForceMultiplier;
+	FVector Force = ForwardArrow->GetRightVector() * Value.Get<float>() * ForceMultiplier;
+	
 	Mesh->AddForce(Force, NAME_None, true);
 }
 
@@ -66,6 +72,7 @@ void APlayerPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	//UE_LOG(LogTemp, Warning, TEXT("Actor Location : %s"), *GetActorLocation().ToString());
 }
 
 

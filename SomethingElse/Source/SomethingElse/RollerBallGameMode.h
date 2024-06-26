@@ -19,4 +19,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TSubclassOf<APlatformBase>> PlatformClassArray;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	APlatformBase* LastPlatformInLine;
+
+
 };
