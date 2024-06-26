@@ -19,7 +19,7 @@ APlayerPawn::APlayerPawn()
 	SetRootComponent(Mesh);
 	Mesh->SetRelativeTransform(FTransform::Identity);
 	Mesh->SetSimulatePhysics(true);
-	Mesh->SetMassOverrideInKg(NAME_None, 250);
+	Mesh->SetMassOverrideInKg(NAME_None, 100);
 
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("Spring Arm"));
 	SpringArm->SetupAttachment(RootComponent);
