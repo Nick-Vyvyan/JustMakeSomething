@@ -7,6 +7,7 @@
 #include "InputActionValue.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "Components/SphereComponent.h"
 
 
 // Sets default values
@@ -22,7 +23,7 @@ APlayerPawn::APlayerPawn()
 	Mesh->SetMassOverrideInKg(NAME_None, 100);
 
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("Spring Arm"));
-	SpringArm->SetupAttachment(RootComponent);
+	SpringArm->SetupAttachment(Mesh);
 	SpringArm->TargetArmLength = 600;
 	SpringArm->SocketOffset.Z = 150;
 	SpringArm->SetUsingAbsoluteRotation(true);
