@@ -38,6 +38,8 @@ APlayerPawn::APlayerPawn()
 	CameraComponent->SetupAttachment(SpringArm);
 	CameraComponent->SetRelativeRotation(FRotator(-30, 0, 0));
 
+	ForceMultiplier = 750;
+	ConstantAcceleration = 350;
 }
 
 // Called to bind functionality to input
@@ -74,8 +76,8 @@ void APlayerPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	//UE_LOG(LogTemp, Warning, TEXT("Actor Location : %s"), *GetActorLocation().ToString());
-	FVector ConstantForce = ForwardArrow->GetForwardVector() * ConstantAcceleration * DeltaTime;
+	
+	FVector ConstantForce = ForwardArrow->GetForwardVector() * ConstantAcceleration;
 	Mesh->AddForce(ConstantForce, NAME_None, true);
 }
 

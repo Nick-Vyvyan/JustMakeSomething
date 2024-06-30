@@ -53,9 +53,9 @@ public:
 	class UArrowComponent* ForwardArrow;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-	float ForceMultiplier = 250;
+	float ForceMultiplier;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
-	float ConstantAcceleration = 25000;
+	float ConstantAcceleration;
 
 };
