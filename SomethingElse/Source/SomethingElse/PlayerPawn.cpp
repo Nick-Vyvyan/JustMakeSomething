@@ -19,9 +19,7 @@ APlayerPawn::APlayerPawn()
 
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	SetRootComponent(Mesh);
-	Mesh->SetRelativeTransform(FTransform::Identity);
 	Mesh->SetSimulatePhysics(true);
-	Mesh->SetMassOverrideInKg(NAME_None, 250);
 	Mesh->SetLinearDamping(0.25);
 	Mesh->SetAngularDamping(0.025);
 
@@ -32,12 +30,13 @@ APlayerPawn::APlayerPawn()
 
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("Spring Arm"));
 	SpringArm->SetupAttachment(Mesh);
-	SpringArm->TargetArmLength = 600;
-	SpringArm->SocketOffset.Z = 150;
+	SpringArm->TargetArmLength = 650;
+	SpringArm->SocketOffset.Z = 350;
 	SpringArm->SetUsingAbsoluteRotation(true);
 
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	CameraComponent->SetupAttachment(SpringArm);
+	CameraComponent->SetRelativeRotation(FRotator(-30, 0, 0));
 
 }
 

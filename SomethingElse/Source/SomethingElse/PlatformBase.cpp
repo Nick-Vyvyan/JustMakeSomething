@@ -13,7 +13,7 @@ APlatformBase::APlatformBase()
 
 	RootComp = CreateDefaultSubobject<USceneComponent>(TEXT("Root Component"));
 	SetRootComponent(RootComp);
-	RootComp->bVisualizeComponent = true;
+	//RootComp->bVisualizeComponent = true;
 
 	NextSpawnLocation = CreateDefaultSubobject<UArrowComponent>(TEXT("Next Spawn Location"));
 	NextSpawnLocation->SetupAttachment(RootComp);
